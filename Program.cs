@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Szakdolgozat.Components;
 using Szakdolgozat.Components.Account;
 using Szakdolgozat.Data;
+using Szakdolgozat.Interfaces;
+using Szakdolgozat.Services;
 
 namespace Szakdolgozat
 {
@@ -31,7 +33,7 @@ namespace Szakdolgozat
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString), ServiceLifetime.Transient);
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -40,6 +42,12 @@ namespace Szakdolgozat
                 .AddDefaultTokenProviders();
 
             builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+
+            builder.Services.AddScoped<IMembersService, MembersService>();
+            builder.Services.AddScoped<IExpensesService, ExpensesService>();
+            builder.Services.AddScoped<IMembershipService, MembershipService>();
+            builder.Services.AddScoped<IPurchasesService, PurchasesService>();
+            builder.Services.AddScoped<ITodoService, TodoService>();
 
             var app = builder.Build();
 

@@ -6,6 +6,7 @@ using Szakdolgozat.Components.Account;
 using Szakdolgozat.Data;
 using Szakdolgozat.Interfaces;
 using Szakdolgozat.Services;
+using MudBlazor.Services;
 
 namespace Szakdolgozat
 {
@@ -48,6 +49,9 @@ namespace Szakdolgozat
             builder.Services.AddScoped<IMembershipService, MembershipService>();
             builder.Services.AddScoped<IPurchasesService, PurchasesService>();
             builder.Services.AddScoped<ITodoService, TodoService>();
+
+            builder.Services.AddMudServices();
+
 
             var app = builder.Build();
 

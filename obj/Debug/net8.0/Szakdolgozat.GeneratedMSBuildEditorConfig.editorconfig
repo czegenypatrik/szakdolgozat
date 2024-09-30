@@ -1,4 +1,7 @@
 is_global = true
+build_property.MudDebugAnalyzer = 
+build_property.MudAllowedAttributePattern = 
+build_property.MudIllegalParameters = 
 build_property.TargetFramework = net8.0
 build_property.TargetFramework = net8.0
 build_property.TargetPlatformMinVersion = 
@@ -200,10 +203,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Patrik/source/repos/Szakdolgozat/Szakdolgozat/Components/Pages/Membership.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNZW1iZXJzaGlwLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Patrik/source/repos/Szakdolgozat/Szakdolgozat/Components/Pages/Membership.razor.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNZW1iZXJzaGlwLnJhem9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Patrik/source/repos/Szakdolgozat/Szakdolgozat/Components/Pages/Weather.razor]

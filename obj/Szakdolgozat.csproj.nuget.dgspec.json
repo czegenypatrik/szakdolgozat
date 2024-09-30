@@ -69,6 +69,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.5, )"
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[7.8.0, )"
             }
           },
           "imports": [

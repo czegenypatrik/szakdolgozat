@@ -1,3 +1,11 @@
 ﻿@page "/berletek"
 
+@rendermode InteractiveServer
+
 <h3>Bérletek</h3>
+<MudText Typo="Typo.h6">MudBlazor is @Text</MudText>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ButtonOnClick">@ButtonText</MudButton>
+<MudRadioGroup @bind-Value="Dense_Radio">
+    <MudRadio Value="true" Color="Color.Primary" Dense="true">Dense</MudRadio>
+    <MudRadio Value="false" Color="Color.Secondary" Dense="false">Normal</MudRadio>
+</MudRadioGroup>

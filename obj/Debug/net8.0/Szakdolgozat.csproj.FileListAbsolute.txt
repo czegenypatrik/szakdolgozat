@@ -260,3 +260,14 @@ C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\runtimes
 C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\obj\Debug\net8.0\Szakdolgozat.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\obj\Debug\net8.0\Szakdolgozat.sourcelink.json
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.Localization.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.Localization.Abstractions.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.JSInterop.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\MudBlazor.dll

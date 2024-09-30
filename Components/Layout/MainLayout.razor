@@ -1,14 +1,30 @@
 ﻿@inherits LayoutComponentBase
 
+@* Required *@
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
+        <MudAppBar Color="Color.Dark" Fixed="false" Style="height: -webkit-fit-content">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+            <MudSpacer />
+            <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.AccountCircle" Href="Account/Manage" />
+        </MudAppBar>
+        @* <div class="top-row px-4">
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+            <MudSwitch @bind-Value="_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode" />
+        </div> *@
 
         <article class="content px-4">
             @Body

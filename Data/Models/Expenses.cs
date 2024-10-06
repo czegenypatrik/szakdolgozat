@@ -13,7 +13,7 @@ namespace Szakdolgozat.Data.Models
         public int Price { get; set; }
         [ForeignKey("User")]
         public string CreatorId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
 }

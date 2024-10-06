@@ -1,0 +1,47 @@
+﻿@page "/kiadasok"
+@rendermode InteractiveServer
+@inject ISnackbar Snackbar
+
+<MudPopoverProvider />
+<MudSnackbarProvider />
+<MudDialogProvider />
+
+<h3>Kiadások</h3>
+<MudPaper Class="pa-16 ma-2" Outlined="true">
+    <EditForm Model="@expense" OnValidSubmit="() => HandleValidSubmit(expense)">
+        <MudTextField @bind-Value="expense.Name" Label="Név" Required Variant="Variant.Outlined"></MudTextField>
+        <MudTextField @bind-Value="expense.Price" Label="Érték" Variant="Variant.Outlined"></MudTextField>
+        <MudDatePicker @bind-Date="expense.CreatedDate" Label="Kiadás ideje" Variant="Variant.Outlined" />
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
+    </EditForm>
+</MudPaper>
+<MudDataGrid T="Szakdolgozat.Data.Models.Expenses" Items="ExpensesList" ReadOnly="false" QuickFilter="@_quickFilter"
+             EditMode="DataGridEditMode.Cell" CommittedItemChanges="@CommittedItemChanges" Bordered="true"
+             Dense="true" EditTrigger="DataGridEditTrigger.Manual" Class=" rounded-3">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Kiadások listája</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Name" Title="Név" />
+        <PropertyColumn Property="x => x.Price" Title="Érték" />
+        <TemplateColumn Editable="true" Title="Kiadás ideje">
+            <CellTemplate>
+                @context.Item.CreatedDate?.ToShortDateString()
+            </CellTemplate>
+            <EditTemplate>
+                <MudDatePicker Date="@context.Item.CreatedDate" DateChanged="@(async (e) => await OnCreatedDateChanged(context.Item, e))" />
+            </EditTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => GetUsernameById(x.CreatorId)" Editable="false" Title="Hozzáadta" />
+        <TemplateColumn CellClass="d-flex justify-end" Editable="false">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Size="@Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteExpense(context.Item)" />
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>

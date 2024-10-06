@@ -2,7 +2,7 @@
 
 @* Required *@
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
-<MudPopoverProvider />
+@* <MudPopoverProvider /> *@
 
 @* Needed for dialogs *@
 <MudDialogProvider />
@@ -11,9 +11,7 @@
 <MudSnackbarProvider />
 
 <div class="page">
-    <div class="sidebar">
         <NavMenu />
-    </div>
 
     <main>
         <MudAppBar Color="Color.Dark" Fixed="false" Style="height: -webkit-fit-content">

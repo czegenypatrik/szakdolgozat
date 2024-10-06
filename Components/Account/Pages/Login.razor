@@ -25,7 +25,7 @@
                 <ValidationSummary class="text-danger" role="alert" />
                 <div class="form-floating mb-3">
                     <InputText @bind-Value="Input.Username" autocomplete="username" aria-required="true" class="input" placeholder="Felhasználó név"/>
-                    <ValidationMessage For="() => Input.Username" class="text-danger" />
+                    <ValidationMessage For="() => Input.Username" class="text-danger"/>
                 </div>
                 <div class="form-floating mb-3">
                     <InputText type="password" @bind-Value="Input.Password" autocomplete="current-password" class="input" aria-required="true" placeholder="Jelszó" />

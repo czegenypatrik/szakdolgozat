@@ -24,16 +24,16 @@ namespace Szakdolgozat.Components.Pages
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            GetMembers();
+            //GetMembers();
         }
         public async void GetMembers()
         {
-            var Users = UserManager.Users;
-            var Members = await _memberService.GetAllMembers();
-            var Memberships = await _membershipService.GetAllMemberships();
-            var Expenses = await _expensesService.GetAllExpenses();
-            var Purchases = await _purchasesService.GetAllPurchases();
-            var Todos = await _todoService.GetAllTodos();
+            //var Users = UserManager.Users;
+            //var Members = await _memberService.GetAllMembers();
+            //var Memberships = await _membershipService.GetAllMemberships();
+            //var Expenses = await _expensesService.GetAllExpenses();
+            //var Purchases = await _purchasesService.GetAllPurchases();
+            //var Todos = await _todoService.GetAllTodos();
             ;
         }
     }

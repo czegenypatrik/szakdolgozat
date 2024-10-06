@@ -1,0 +1,62 @@
+﻿@page "/tagok"
+@rendermode InteractiveServer
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+
+<MudPopoverProvider />
+<MudSnackbarProvider />
+<MudDialogProvider />
+
+<h3>Tagok</h3>
+<MudPaper Class="pa-16 ma-2" Outlined="true">
+    <EditForm Model="@member" OnValidSubmit="() => HandleValidSubmit(member)">
+        <MudTextField @bind-Value="member.Name" Label="Név" Required Variant="Variant.Outlined"></MudTextField>
+        <MudTextField @bind-Value="member.Email" Label="Email" Variant="Variant.Outlined"></MudTextField>
+        <MudDatePicker @bind-Date="member.Birthday" Label="Születésnap" Variant="Variant.Outlined"/>
+        <MudSelect @bind-Value="member.Gender" Label="Nem" Variant="Variant.Outlined">
+            <MudSelectItem Value="@("Férfi")"><MudIcon Icon="@Icons.Material.Filled.Man" />Férfi</MudSelectItem>
+            <MudSelectItem Value="@("Nő")"><MudIcon Icon="@Icons.Material.Filled.Woman" /> Nő</MudSelectItem>
+        </MudSelect>
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
+    </EditForm>
+</MudPaper>
+<MudDataGrid T="Szakdolgozat.Data.Models.Members" Items="MembersList" ReadOnly="false" QuickFilter="@_quickFilter"
+             EditMode="DataGridEditMode.Cell" CommittedItemChanges="@CommittedItemChanges" Bordered="true"
+             Dense="true" EditTrigger="DataGridEditTrigger.Manual" Class=" rounded-3">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Jelenleg nyílvántartásban lévő tagok listája</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Name" Title="Név" />
+        <PropertyColumn Property="x => x.Email" Title="Email" />
+        <TemplateColumn Editable="true" Title="Születésnap">
+            <CellTemplate>
+                @context.Item.Birthday?.ToShortDateString()
+            </CellTemplate>
+            <EditTemplate>
+                <MudDatePicker Date="@context.Item.Birthday" DateChanged="@(async (e) => await OnBirthdayChanged(context.Item, e))" />
+            </EditTemplate>
+        </TemplateColumn>
+        <TemplateColumn Editable="true" Title="Nem">
+            <CellTemplate>
+                @context.Item.Gender
+            </CellTemplate>
+            <EditTemplate>
+                <MudSelect @bind-Value="context.Item.Gender" Variant="Variant.Outlined">
+                    <MudSelectItem Value="@("Férfi")"><MudIcon Icon="@Icons.Material.Filled.Man" />Férfi</MudSelectItem>
+                    <MudSelectItem Value="@("Nő")"><MudIcon Icon="@Icons.Material.Filled.Woman" /> Nő</MudSelectItem>
+                </MudSelect>
+            </EditTemplate>
+        </TemplateColumn>
+        <TemplateColumn CellClass="d-flex justify-end" Editable="false">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Size="@Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteMember(context.Item)" />
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>

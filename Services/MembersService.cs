@@ -41,6 +41,7 @@ namespace Szakdolgozat.Services
                 member.Email = updatedMember.Email;
                 member.Birthday = updatedMember.Birthday;
                 member.JoinedDate = updatedMember.JoinedDate;
+                member.Gender = updatedMember.Gender;
 
                 await _context.SaveChangesAsync();
             }

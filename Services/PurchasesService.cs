@@ -20,6 +20,12 @@ namespace Szakdolgozat.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task CreateManyPurchases(List<Purchases> PurchaseList)
+        {
+            _context.Purchases.AddRange(PurchaseList);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<Purchases?> GetPurchaseById(Guid id)
         {
             return await _context.Purchases.FindAsync(id);

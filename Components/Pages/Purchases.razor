@@ -1,3 +1,47 @@
 ﻿@page "/vasarlasok"
+@rendermode InteractiveServer
+@inject ISnackbar Snackbar
+
+<MudPopoverProvider />
+<MudSnackbarProvider />
+<MudDialogProvider />
 
 <h3>Eladások</h3>
+
+@* <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="CreateDummyData">Létrehoz</MudButton> *@
+
+<MudPaper Class="pa-16 ma-2" Outlined="true">
+    <EditForm Model="@purchase" OnValidSubmit="() => HandleValidSubmit(purchase)">
+        <MudAutocomplete T="Data.Models.Members" Label="Vásárló" @bind-Value="newBuyer"
+                         SearchFunc="@SearchBuyer" ToStringFunc="@(e=> e == null ? null : $"{e.Name} {e.Birthday:yyyy/MM/dd}")" ResetValueOnEmptyText=true />
+        <MudSelect @bind-Value="purchase.PassId" Label="Válassz bérlet típus" Placeholder="Válassz típust..." Strict>
+            @foreach (Data.Models.Membership item in Memberships)
+            {
+                <MudSelectItem Value="@item.Id">@item.Type <MudChip T="string" Color="Color.Info">@item.Price Ft</MudChip></MudSelectItem>
+            }
+        </MudSelect>
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
+    </EditForm>
+</MudPaper>
+<MudDataGrid T="Szakdolgozat.Data.Models.Purchases" Items="PurchasesList" ReadOnly="true" QuickFilter="@_quickFilter" Bordered="true" Class=" rounded-3">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Vásárlások listája</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => GetMemberById(x.BuyerId)" Title="Vevő" />
+        <PropertyColumn Property="x => GetMembershipById(x.PassId)" Title="Bérlet típus" />
+        <PropertyColumn Property="x => GetUsernameById(x.CreatorId)" Editable="false" Title="Eladó" />
+        <PropertyColumn Property="x => x.Price" Title="Ár" />
+        <TemplateColumn Editable="false" Title="Dátum">
+            <CellTemplate>
+                @context.Item.CreatedDate.ToShortDateString()
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Szakdolgozat.Data.Models.Purchases" />
+    </PagerContent>
+</MudDataGrid>

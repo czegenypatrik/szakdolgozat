@@ -271,3 +271,8 @@ C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsof
 C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.JSInterop.dll
 C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\MudBlazor.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Npgsql.dll
+C:\Users\Patrik\source\repos\Szakdolgozat\Szakdolgozat\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

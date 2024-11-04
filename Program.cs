@@ -7,6 +7,8 @@ using Szakdolgozat.Data;
 using Szakdolgozat.Interfaces;
 using Szakdolgozat.Services;
 using MudBlazor.Services;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Npgsql;
 
 namespace Szakdolgozat
 {
@@ -17,6 +19,7 @@ namespace Szakdolgozat
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
@@ -34,7 +37,7 @@ namespace Szakdolgozat
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString), ServiceLifetime.Transient);
+                options.UseNpgsql(connectionString), ServiceLifetime.Transient);
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)

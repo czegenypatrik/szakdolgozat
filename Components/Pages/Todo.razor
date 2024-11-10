@@ -2,12 +2,31 @@
 @rendermode InteractiveServer
 @inject ISnackbar Snackbar
 @inject IDialogService DialogService
+@using Syncfusion.Blazor.Kanban
 
 <MudPopoverProvider />
 <MudSnackbarProvider />
 <MudDialogProvider />
 
 <h3>Feladatok</h3>
+<MudPaper Class="pa-16 ma-2" Outlined="true">
+    <EditForm Model="@todo" OnValidSubmit="() => HandleValidSubmit(todo)">
+        <MudTextField @bind-Value="todo.Name" Label="Név" Required Variant="Variant.Outlined"></MudTextField>
+        <MudTextField @bind-Value="todo.Description" Label="Leírás" Variant="Variant.Outlined"></MudTextField>
+        <MudDatePicker @bind-Date="todo.DueDate" Label="Határidő" Variant="Variant.Outlined" />
+        <MudSelect @bind-Value="todo.Severity" Label="Fontosság" Variant="Variant.Outlined">
+            <MudSelectItem Value="0"><MudIcon />Normál</MudSelectItem>
+            <MudSelectItem Value="1"><MudIcon />Fokozott</MudSelectItem>
+            <MudSelectItem Value="2"><MudIcon /> Sürgős</MudSelectItem>
+        </MudSelect>
+        <MudSelect @bind-Value="todo.Status" Label="Státusz" Variant="Variant.Outlined">
+            <MudSelectItem Value="@("Open")"><MudIcon />Elkészítésre vár</MudSelectItem>
+            <MudSelectItem Value="@("InProgress")"><MudIcon />Folyamatban</MudSelectItem>
+            <MudSelectItem Value="@("Done")"><MudIcon /> Kész</MudSelectItem>
+        </MudSelect>
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
+    </EditForm>
+</MudPaper>
 <MudDataGrid T="Szakdolgozat.Data.Models.Todo" Items="TodoList" ReadOnly="false" QuickFilter="@_quickFilter"
              EditMode="DataGridEditMode.Cell" CommittedItemChanges="@CommittedItemChanges" Bordered="true"
              Dense="false" EditTrigger="DataGridEditTrigger.Manual" Class=" rounded-3">
@@ -15,7 +34,7 @@
         <MudText Typo="Typo.h6">Elvégzendő feladatok</MudText>
         <MudSpacer />
         <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
-                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="MudBlazor.Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <Columns>
         <PropertyColumn Property="x => x.Name" Title="Név" />
@@ -27,16 +46,16 @@
         </TemplateColumn>
         <TemplateColumn Editable="false" Title="Határidő">
             <CellTemplate>
-                @context.Item.DueDate.ToShortDateString()
+                @context.Item.DueDate?.ToShortDateString()
             </CellTemplate>
         </TemplateColumn>
-        <PropertyColumn Property="x => x.CreatorId" Title="Hozzáadta" />
+        <PropertyColumn Property="x => GetUsernameById(x.CreatorId)" Title="Hozzáadta" Editable="false" />
         <PropertyColumn Property="x => x.Severity" Title="Fontosság" />
         <PropertyColumn Property="x => x.Status" Title="Státusz" />
         <TemplateColumn CellClass="d-flex justify-end" Editable="false">
             <CellTemplate>
                 <MudStack Row>
-                    <MudIconButton Size="@Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteTodo(context.Item)" />
+                    <MudIconButton Size="@MudBlazor.Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteTodo(context.Item)" />
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>
@@ -45,3 +64,11 @@
         <MudDataGridPager T="Szakdolgozat.Data.Models.Todo" />
     </PagerContent>
 </MudDataGrid>
+<SfKanban TValue="Data.Models.Todo" KeyField="Status" DataSource="TodoList">
+    <KanbanColumns>
+        <KanbanColumn HeaderText="Elkészítésre vár" KeyField="@(new List<string>() {"Open"})"></KanbanColumn>
+        <KanbanColumn HeaderText="Folyamatban" KeyField="@(new List<string>() {"InProgress"})"></KanbanColumn>
+        <KanbanColumn HeaderText="Kész" KeyField="@(new List<string>() {"Done"})"></KanbanColumn>
+    </KanbanColumns>
+    <KanbanCardSettings HeaderField="Name" ContentField="Description"></KanbanCardSettings>
+</SfKanban>

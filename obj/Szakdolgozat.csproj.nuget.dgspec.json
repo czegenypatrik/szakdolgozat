@@ -77,6 +77,22 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "Syncfusion.Blazor.Charts": {
+              "target": "Package",
+              "version": "[27.1.58, )"
+            },
+            "Syncfusion.Blazor.Kanban": {
+              "target": "Package",
+              "version": "[27.1.58, )"
+            },
+            "Syncfusion.Blazor.Themes": {
+              "target": "Package",
+              "version": "[27.1.58, )"
+            },
+            "Syncfusion.Licensing": {
+              "target": "Package",
+              "version": "[27.1.58, )"
             }
           },
           "imports": [

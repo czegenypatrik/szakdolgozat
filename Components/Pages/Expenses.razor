@@ -22,7 +22,7 @@
         <MudText Typo="Typo.h6">Kiadások listája</MudText>
         <MudSpacer />
         <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
-                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="MudBlazor.Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <Columns>
         <PropertyColumn Property="x => x.Name" Title="Név" />
@@ -39,9 +39,12 @@
         <TemplateColumn CellClass="d-flex justify-end" Editable="false">
             <CellTemplate>
                 <MudStack Row>
-                    <MudIconButton Size="@Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteExpense(context.Item)" />
+                    <MudIconButton Size="@MudBlazor.Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteExpense(context.Item)" />
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>
     </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Szakdolgozat.Data.Models.Expenses" />
+    </PagerContent>
 </MudDataGrid>

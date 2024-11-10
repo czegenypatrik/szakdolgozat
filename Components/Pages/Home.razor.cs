@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
+using Syncfusion.Blazor;
+using Syncfusion.Blazor.Charts;
+using System.Globalization;
+using System.Net.NetworkInformation;
 using Szakdolgozat.Data;
+using Szakdolgozat.Data.Models;
 using Szakdolgozat.Interfaces;
 using Szakdolgozat.Services;
 
@@ -21,10 +26,14 @@ namespace Szakdolgozat.Components.Pages
         [Inject]
         public UserManager<ApplicationUser> UserManager { get; set; }
 
-        protected override void OnInitialized()
+        private List<Data.Models.Members> membersList = new List<Szakdolgozat.Data.Models.Members>();
+        private List<MonthlyNewMembers> monthlyData;
+
+        protected override async void OnInitialized()
         {
             base.OnInitialized();
-            //GetMembers();
+            membersList = await _memberService.GetAllMembers();
+            monthlyData = GetMonthlyNewMembers(membersList);
         }
         public async void GetMembers()
         {
@@ -35,6 +44,29 @@ namespace Szakdolgozat.Components.Pages
             //var Purchases = await _purchasesService.GetAllPurchases();
             //var Todos = await _todoService.GetAllTodos();
             ;
+        }
+
+        public List<MonthlyNewMembers> GetMonthlyNewMembers(List<Data.Models.Members> members)
+        {
+            var hungarianCulture = new CultureInfo("hu-HU");
+
+            return members
+                .Where(m => m.JoinedDate != null)
+                .GroupBy(m => new { m.JoinedDate.Year, m.JoinedDate.Month })
+                .Select(g => new MonthlyNewMembers
+                {
+                    Month = new DateTime(g.Key.Year, g.Key.Month, 1)
+                        .ToString("yyyy MMM", hungarianCulture), // Format as "2024 január"
+                    NewMembersCount = g.Count()
+                })
+                .OrderBy(m => DateTime.ParseExact(m.Month, "yyyy MMM", hungarianCulture))
+                .ToList();
+        }
+
+        public class MonthlyNewMembers
+        {
+            public string Month { get; set; }
+            public int NewMembersCount { get; set; }
         }
     }
 }

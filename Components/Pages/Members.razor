@@ -27,7 +27,7 @@
         <MudText Typo="Typo.h6">Jelenleg nyílvántartásban lévő tagok listája</MudText>
         <MudSpacer />
         <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
-                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="MudBlazor.Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <Columns>
         <PropertyColumn Property="x => x.Name" Title="Név" />
@@ -51,10 +51,15 @@
                 </MudSelect>
             </EditTemplate>
         </TemplateColumn>
+        <TemplateColumn Editable="false" Title="Belépés">
+            <CellTemplate>
+                @context.Item.JoinedDate.ToShortDateString()
+            </CellTemplate>
+        </TemplateColumn>
         <TemplateColumn CellClass="d-flex justify-end" Editable="false">
             <CellTemplate>
                 <MudStack Row>
-                    <MudIconButton Size="@Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteMember(context.Item)" />
+                    <MudIconButton Size="@MudBlazor.Size.Medium" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteMember(context.Item)" />
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>

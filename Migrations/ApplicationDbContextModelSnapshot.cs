@@ -225,7 +225,7 @@ namespace Szakdolgozat.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatorId")
                         .IsRequired()
@@ -253,7 +253,7 @@ namespace Szakdolgozat.Migrations
 
                     b.Property<DateTime?>("Birthday")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -262,7 +262,7 @@ namespace Szakdolgozat.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("JoinedDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -289,6 +289,9 @@ namespace Szakdolgozat.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("ValidDays")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("Membership");
@@ -304,7 +307,7 @@ namespace Szakdolgozat.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatorId")
                         .IsRequired()
@@ -330,7 +333,7 @@ namespace Szakdolgozat.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatorId")
                         .IsRequired()
@@ -340,8 +343,8 @@ namespace Szakdolgozat.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -350,8 +353,9 @@ namespace Szakdolgozat.Migrations
                     b.Property<int>("Severity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

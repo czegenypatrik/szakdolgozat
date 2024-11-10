@@ -12,11 +12,11 @@ namespace Szakdolgozat.Data.Models
         public string Description { get; set; }
         [Required]
         public DateTime CreatedDate { get; set; }
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
         [ForeignKey("User")]
         public string CreatorId { get; set; }
         public int Severity { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
 }

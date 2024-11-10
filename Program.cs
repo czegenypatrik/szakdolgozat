@@ -7,6 +7,7 @@ using Szakdolgozat.Data;
 using Szakdolgozat.Interfaces;
 using Szakdolgozat.Services;
 using MudBlazor.Services;
+using Syncfusion.Blazor;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Npgsql;
 
@@ -17,8 +18,10 @@ namespace Szakdolgozat
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWH5eeXRTRGJdWUN0W0Y=");
 
             // Add services to the container.
+            builder.Services.AddSyncfusionBlazor();
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();

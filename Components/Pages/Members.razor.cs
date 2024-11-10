@@ -9,9 +9,9 @@ namespace Szakdolgozat.Components.Pages
         [Inject]
         private IMembersService _membersService { get; set; }
 
-        private List<Szakdolgozat.Data.Models.Members> MembersList = new List<Szakdolgozat.Data.Models.Members>();
+        private List<Data.Models.Members> MembersList = new List<Data.Models.Members>();
 
-        private Szakdolgozat.Data.Models.Members member = new Szakdolgozat.Data.Models.Members();
+        private Data.Models.Members member = new Data.Models.Members();
         private string? _searchString;
 
         protected override async Task OnInitializedAsync()
@@ -20,7 +20,7 @@ namespace Szakdolgozat.Components.Pages
             MembersList = await GetMembers();
         }
 
-        private Func<Szakdolgozat.Data.Models.Members, bool> _quickFilter => x =>
+        private Func<Data.Models.Members, bool> _quickFilter => x =>
         {
             if (string.IsNullOrWhiteSpace(_searchString))
                 return true;
@@ -33,9 +33,9 @@ namespace Szakdolgozat.Components.Pages
 
             return false;
         };
-        public async Task<List<Szakdolgozat.Data.Models.Members>> GetMembers() => await _membersService.GetAllMembers();
+        public async Task<List<Data.Models.Members>> GetMembers() => await _membersService.GetAllMembers();
 
-        void CommittedItemChanges(Szakdolgozat.Data.Models.Members item)
+        void CommittedItemChanges(Data.Models.Members item)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Szakdolgozat.Components.Pages
             }
         }
 
-        private async Task OnBirthdayChanged(Szakdolgozat.Data.Models.Members member, DateTime? newDate)
+        private async Task OnBirthdayChanged(Data.Models.Members member, DateTime? newDate)
         {
             if (newDate.HasValue)
             {
@@ -67,7 +67,7 @@ namespace Szakdolgozat.Components.Pages
             }
         }
 
-        void HandleValidSubmit(Szakdolgozat.Data.Models.Members item)
+        void HandleValidSubmit(Data.Models.Members item)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Szakdolgozat.Components.Pages
                 throw;
             }
         }
-        void DeleteMember(Szakdolgozat.Data.Models.Members member)
+        void DeleteMember(Data.Models.Members member)
         {
             try
             {

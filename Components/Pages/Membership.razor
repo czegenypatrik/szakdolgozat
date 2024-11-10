@@ -20,7 +20,7 @@
         <MudText Typo="Typo.h6">Bérlet és jegy típusok listája</MudText>
         <MudSpacer />
         <MudTextField @bind-Value="_searchString" Placeholder="Keresés" Adornment="Adornment.Start" Immediate="true"
-                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="MudBlazor.Size.Medium" Variant="Variant.Outlined" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <Columns>
         <PropertyColumn Property="x => x.Type" Title="Típus" />
@@ -29,9 +29,12 @@
         <TemplateColumn CellClass="d-flex justify-end" Editable="false">
             <CellTemplate>
                 <MudStack Row>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteMembership(context.Item)" />
+                    <MudIconButton Size="@MudBlazor.Size.Small" Icon="@Icons.Material.Outlined.Delete" OnClick="() => DeleteMembership(context.Item)" />
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>
     </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Szakdolgozat.Data.Models.Membership" />
+    </PagerContent>
 </MudDataGrid>

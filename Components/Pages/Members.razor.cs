@@ -8,16 +8,25 @@ namespace Szakdolgozat.Components.Pages
     {
         [Inject]
         private IMembersService _membersService { get; set; }
+        [Inject]
+        private IMembershipService _membershipService { get; set; }
+        [Inject]
+        private IPurchasesService _purchasesService { get; set; }
 
         private List<Data.Models.Members> MembersList = new List<Data.Models.Members>();
+        private List<Data.Models.Membership> MembershipList = new List<Data.Models.Membership>();
+        private List<Data.Models.Purchases> PurchaseList = new List<Data.Models.Purchases>();
 
         private Data.Models.Members member = new Data.Models.Members();
+        private Data.Models.Purchases? purchase = new Data.Models.Purchases();
         private string? _searchString;
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             MembersList = await GetMembers();
+            MembershipList = await _membershipService.GetAllMemberships();
+            PurchaseList = await _purchasesService.GetAllPurchases();
         }
 
         private Func<Data.Models.Members, bool> _quickFilter => x =>
@@ -35,7 +44,33 @@ namespace Szakdolgozat.Components.Pages
         };
         public async Task<List<Data.Models.Members>> GetMembers() => await _membersService.GetAllMembers();
 
-        void CommittedItemChanges(Data.Models.Members item)
+        private bool GetMemberStatus(Guid id)
+        {
+            Data.Models.Purchases? purchase = new Data.Models.Purchases();
+
+            if (id == Guid.Empty)
+            {
+                return false;
+            }
+            else
+            {
+                purchase = PurchaseList
+                .Where(p => p.BuyerId == id)
+                .OrderByDescending(p => p.CreatedDate)
+                .FirstOrDefault();
+                if(purchase != null)
+                {
+                    int? days = MembershipList.Where(p => p.Id == purchase.PassId).Select(p => p.ValidDays).FirstOrDefault();
+                    if (days != null && purchase.CreatedDate.AddDays(days.Value) > DateTime.Today)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+    void CommittedItemChanges(Data.Models.Members item)
         {
             try
             {

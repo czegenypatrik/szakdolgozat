@@ -40,6 +40,18 @@
                 <MudDatePicker Date="@context.Item.Birthday" DateChanged="@(async (e) => await OnBirthdayChanged(context.Item, e))" />
             </EditTemplate>
         </TemplateColumn>
+        <TemplateColumn Editable="false" Title="Státusz">
+            <CellTemplate>
+                @if (@GetMemberStatus(context.Item.Id))
+                {
+                    <MudChip T="string" Color="Color.Success">Aktív</MudChip>
+                }
+                @if (!@GetMemberStatus(context.Item.Id))
+                {
+                    <MudChip T="string" Color="Color.Error">Inaktív</MudChip>
+                }
+            </CellTemplate>
+        </TemplateColumn>
         <TemplateColumn Editable="true" Title="Nem">
             <CellTemplate>
                 @context.Item.Gender

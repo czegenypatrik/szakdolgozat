@@ -10,6 +10,7 @@
     <EditForm Model="@membership" OnValidSubmit="() => HandleValidSubmit(membership)">
         <MudTextField @bind-Value="membership.Type" Label="Típus" Required Variant="Variant.Outlined"></MudTextField>
         <MudNumericField @bind-Value="membership.Price" Label="Ár" Required Variant="Variant.Outlined" />
+        <MudNumericField @bind-Value="membership.ValidDays" Label="Érvényesség (Napok)" Required Variant="Variant.Outlined" />
         <MudTextField @bind-Value="membership.Description" Label="Leírás" Variant="Variant.Outlined"></MudTextField>
         <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
     </EditForm>
@@ -26,6 +27,7 @@
         <PropertyColumn Property="x => x.Type" Title="Típus" />
         <PropertyColumn Property="x => x.Price" Title="Ár"/>
         <PropertyColumn Property="x => x.Description" Title="Leírás"/>
+        <PropertyColumn Property="x => x.ValidDays" Title="Érvényesség (Napok)"/>
         <TemplateColumn CellClass="d-flex justify-end" Editable="false">
             <CellTemplate>
                 <MudStack Row>

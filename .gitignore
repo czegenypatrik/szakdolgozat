@@ -1,2 +1,66 @@
+# Ignore build outputs and other generated files
+bin/
+obj/
+out/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files from Visual Studio
+.vscode/
+.vscode/*
+.vscode/**
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+
+# Logs
+*.log
+logs/
+debug.log
+*.tlog
+
+# Other cache and temporary files
+.cache/
+*.cache
+*.tmp
+*.swp
+*.sublime-workspace
+
+# Dependency directories
+packages/
+node_modules/
+wwwroot/lib/
+wwwroot/css/app.css
+wwwroot/js/app.js
+
+# Configurations and local secrets
+appsettings.*.json
+secrets.json
+
+# Generated files (like migrations, SQL scripts, etc.)
+Migrations/
+
+# Publish output
+.publish/
+
+# ASP.NET Identity database
+*.db
+
+# Compiled Razor files
+*.g.cs
+*.razor.g.cs
+
+# Visual Studio Code specific
+.vscode/
+
+# IDE configurations and metadata
+.idea/
+.vscode/
 .vs/
-bin
+.ReSharper

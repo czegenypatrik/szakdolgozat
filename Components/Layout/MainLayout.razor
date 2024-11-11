@@ -13,7 +13,7 @@
 <head>
     <link href="_content/Syncfusion.Blazor.Themes/bootstrap5-dark.css" rel="stylesheet" />
 </head>
-<div class="page">
+@* <div class="page">
         <NavMenu />
 
     <main>
@@ -22,16 +22,30 @@
             <MudSpacer />
             <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.AccountCircle" Href="Account/Manage" />
         </MudAppBar>
-        @* <div class="top-row px-4">
+        <div class="top-row px-4">
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
             <MudSwitch @bind-Value="_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode" />
-        </div> *@
+        </div>
 
         <article class="content px-4">
             @Body
         </article>
     </main>
-</div>
+</div> *@
+
+<MudLayout>
+    <MudAppBar Color="Color.Dark" Fixed="false" Style="height: -webkit-fit-content">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
+        <MudSpacer />
+        <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.AccountCircle" Href="Account/Manage" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.

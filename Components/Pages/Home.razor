@@ -11,82 +11,97 @@
         </div>
     </NotAuthorized>
     <Authorized>
-
-        <SfChart Title="Új belépők havi osztásban" >
-            <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
-            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hónap" />
-            <ChartPrimaryYAxis Title="Új belépők" Minimum="0" />
-            <ChartSeriesCollection>
-                <ChartSeries TooltipMappingName="MappingName" DataSource="@monthlyData" XName="Month" YName="NewMembersCount" Name="Tag" ColumnSpacing="0.1" Type="ChartSeriesType.Column">
-                    <ChartMarker>
-                        <ChartDataLabel Visible="false" Position="Syncfusion.Blazor.Charts.LabelPosition.Top">
-                            <ChartDataLabelFont FontWeight="600" Color="#ffffff"></ChartDataLabelFont>
-                        </ChartDataLabel>
-                    </ChartMarker>
-                </ChartSeries>
-            </ChartSeriesCollection>
-            <ChartTooltipSettings Header="<b>${point.tooltip}</b>" Enable="true" Shared="true"></ChartTooltipSettings>
-        </SfChart>
-
-        <SfAccumulationChart Title="Férfi / Nő eloszlás tagok közt">
-            <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
-            <AccumulationChartTooltipSettings Header="" Format="<b>${point.x}</b><br>Nem eloszlás: <b>${point.y} db</b>" Enable="true"></AccumulationChartTooltipSettings>
-            <AccumulationChartSeriesCollection>
-                <AccumulationChartSeries DataSource="@genderDistribution" XName="Gender" YName="Count"
-                                         Name="Nem">
-                </AccumulationChartSeries>
-            </AccumulationChartSeriesCollection>
-
-            <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
-        </SfAccumulationChart>
-
-        <SfChart Title="Havi kiadások">
-            <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
-            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hónap" />
-            <ChartPrimaryYAxis Title="Kiadások" Minimum="0" />
-            <ChartSeriesCollection>
-                <ChartSeries TooltipMappingName="MappingName" DataSource="@monthlyExpenseData" XName="Month" YName="TotalExpense" ColumnSpacing="0.1" Type="ChartSeriesType.Column">
-                    <ChartMarker>
-                        <ChartDataLabel Visible="false" Position="Syncfusion.Blazor.Charts.LabelPosition.Top">
-                            <ChartDataLabelFont FontWeight="600" Color="#ffffff"></ChartDataLabelFont>
-                        </ChartDataLabel>
-                    </ChartMarker>
-                </ChartSeries>
-            </ChartSeriesCollection>
-            <ChartTooltipSettings Header="<b>${point.tooltip}</b>" Format="<b>${point.x}</b><br>Kiadás összege: <b>${point.y} Ft</b>" Enable="true" Shared="true"></ChartTooltipSettings>
-        </SfChart>
-
-        <SfChart Title="Havi bevétel">
-            <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
-            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hónap" />
-            <ChartPrimaryYAxis Title="Bevétel" Minimum="0" />
-            <ChartSeriesCollection>
-                <ChartSeries TooltipMappingName="MappingName" DataSource="@monthlyProfitData" XName="Month" YName="TotalProfit" ColumnSpacing="0.1" Type="ChartSeriesType.Column">
-                    <ChartMarker>
-                        <ChartDataLabel Visible="false" Position="Syncfusion.Blazor.Charts.LabelPosition.Top">
-                            <ChartDataLabelFont FontWeight="600" Color="#ffffff"></ChartDataLabelFont>
-                        </ChartDataLabel>
-                    </ChartMarker>
-                </ChartSeries>
-            </ChartSeriesCollection>
-            <ChartTooltipSettings Header="<b>${point.tooltip}</b>" Format="<b>${point.x}</b><br>Bevétel összege: <b>${point.y} Ft</b>" Enable="true" Shared="true"></ChartTooltipSettings>
-        </SfChart>
-
-        <SfAccumulationChart Title="Bérlet típus vásárlások">
-            <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
-            <AccumulationChartTooltipSettings Header=""
-                                              Format="<b>${point.x}</b><br>Típus eloszlás: <b>${point.y} db</b><br>Összeg: <b>${point.tooltip} Ft</b>"
-                                              Enable="true">
-            </AccumulationChartTooltipSettings>
-            <AccumulationChartSeriesCollection>
-                <AccumulationChartSeries DataSource="@purchaseData"
-                                         XName="PassId"
-                                         YName="Count"
-                                         TooltipMappingName="TotalAmount"
-                                         Name="Bevétel">
-                </AccumulationChartSeries>
-            </AccumulationChartSeriesCollection>
-        </SfAccumulationChart>
-
+        <MudGrid>
+            <MudItem xs="12" md="12" lg="6">
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                    <SfChart Title="Új belépők havi osztásban">
+                        <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
+                        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hónap" />
+                        <ChartPrimaryYAxis Title="Új belépők" Minimum="0" />
+                        <ChartSeriesCollection>
+                            <ChartSeries TooltipMappingName="MappingName" DataSource="@monthlyData" XName="Month" YName="NewMembersCount" Name="Tag" ColumnSpacing="0.1" Type="ChartSeriesType.Column">
+                                <ChartMarker>
+                                    <ChartDataLabel Visible="false" Position="Syncfusion.Blazor.Charts.LabelPosition.Top">
+                                        <ChartDataLabelFont FontWeight="600" Color="#ffffff"></ChartDataLabelFont>
+                                    </ChartDataLabel>
+                                </ChartMarker>
+                            </ChartSeries>
+                        </ChartSeriesCollection>
+                        <ChartTooltipSettings Header="<b>${point.tooltip}</b>" Enable="true" Shared="true"></ChartTooltipSettings>
+                    </SfChart>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" md="12" lg="6">
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                    <SfAccumulationChart Title="Férfi / Nő eloszlás tagok közt">
+                        <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
+                        <AccumulationChartTooltipSettings Header="" Format="<b>${point.x}</b><br>Nem eloszlás: <b>${point.y} db</b>" Enable="true"></AccumulationChartTooltipSettings>
+                        <AccumulationChartSeriesCollection>
+                            <AccumulationChartSeries DataSource="@genderDistribution" XName="Gender" YName="Count"
+                                                     Name="Nem">
+                            </AccumulationChartSeries>
+                        </AccumulationChartSeriesCollection>
+                        <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
+                    </SfAccumulationChart>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" md="12" lg="6">
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                    <SfChart Title="Havi kiadások">
+                        <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
+                        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hónap" />
+                        <ChartPrimaryYAxis Title="Kiadások" Minimum="0" />
+                        <ChartSeriesCollection>
+                            <ChartSeries TooltipMappingName="MappingName" DataSource="@monthlyExpenseData" XName="Month" YName="TotalExpense" ColumnSpacing="0.1" Type="ChartSeriesType.Column">
+                                <ChartMarker>
+                                    <ChartDataLabel Visible="false" Position="Syncfusion.Blazor.Charts.LabelPosition.Top">
+                                        <ChartDataLabelFont FontWeight="600" Color="#ffffff"></ChartDataLabelFont>
+                                    </ChartDataLabel>
+                                </ChartMarker>
+                            </ChartSeries>
+                        </ChartSeriesCollection>
+                        <ChartTooltipSettings Header="<b>${point.tooltip}</b>" Format="<b>${point.x}</b><br>Kiadás összege: <b>${point.y} Ft</b>" Enable="true" Shared="true"></ChartTooltipSettings>
+                    </SfChart>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" md="12" lg="6">
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                    <SfChart Title="Havi bevétel">
+                        <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
+                        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hónap" />
+                        <ChartPrimaryYAxis Title="Bevétel" Minimum="0" />
+                        <ChartSeriesCollection>
+                            <ChartSeries TooltipMappingName="MappingName" DataSource="@monthlyProfitData" XName="Month" YName="TotalProfit" ColumnSpacing="0.1" Type="ChartSeriesType.Column">
+                                <ChartMarker>
+                                    <ChartDataLabel Visible="false" Position="Syncfusion.Blazor.Charts.LabelPosition.Top">
+                                        <ChartDataLabelFont FontWeight="600" Color="#ffffff"></ChartDataLabelFont>
+                                    </ChartDataLabel>
+                                </ChartMarker>
+                            </ChartSeries>
+                        </ChartSeriesCollection>
+                        <ChartTooltipSettings Header="<b>${point.tooltip}</b>" Format="<b>${point.x}</b><br>Bevétel összege: <b>${point.y} Ft</b>" Enable="true" Shared="true"></ChartTooltipSettings>
+                    </SfChart>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" md="12" lg="6">
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                    <SfAccumulationChart Title="Bérlet típus vásárlások">
+                        <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
+                        <AccumulationChartTooltipSettings Header=""
+                                                          Format="<b>${point.x}</b><br>Típus eloszlás: <b>${point.y} db</b><br>Összeg: <b>${point.tooltip} Ft</b>"
+                                                          Enable="true">
+                        </AccumulationChartTooltipSettings>
+                        <AccumulationChartSeriesCollection>
+                            <AccumulationChartSeries DataSource="@purchaseData"
+                                                     XName="PassId"
+                                                     YName="Count"
+                                                     TooltipMappingName="TotalAmount"
+                                                     Name="Bevétel">
+                            </AccumulationChartSeries>
+                        </AccumulationChartSeriesCollection>
+                    </SfAccumulationChart>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
     </Authorized>
 </AuthorizeView>

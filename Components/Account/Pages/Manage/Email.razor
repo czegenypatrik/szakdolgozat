@@ -12,9 +12,9 @@
 @inject IdentityUserAccessor UserAccessor
 @inject NavigationManager NavigationManager
 
-<PageTitle>Manage email</PageTitle>
+<PageTitle>Email megváltoztatása</PageTitle>
 
-<h3>Manage email</h3>
+<h3>Email megváltoztatása</h3>
 
 <StatusMessage Message="@message"/>
 <div class="row">
@@ -28,7 +28,7 @@
             @if (isEmailConfirmed)
             {
                 <div class="form-floating mb-3 input-group">
-                    <input type="text" value="@email" class="form-control" placeholder="Please enter your email." disabled />
+                    <input type="text" value="@email" class="form-control input" placeholder="Add meg az email címed." disabled />
                     <div class="input-group-append">
                         <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                     </div>
@@ -38,20 +38,45 @@
             else
             {
                 <div class="form-floating mb-3">
-                    <input type="text" value="@email" class="form-control" placeholder="Please enter your email." disabled />
+                    <input type="text" value="@email" class="form-control input" placeholder="Add meg az email címed." disabled />
                     <label for="email" class="form-label">Email</label>
                     <button type="submit" class="btn btn-link" form="send-verification-form">Send verification email</button>
                 </div>
             }
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." />
-                <label for="new-email" class="form-label">New email</label>
+                <InputText @bind-Value="Input.NewEmail" class="form-control input" autocomplete="email" aria-required="true" placeholder="Add meg az új email címed." />
+                <label for="new-email" class="form-label">Új email</label>
                 <ValidationMessage For="() => Input.NewEmail" class="text-danger" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Change email</button>
+            @* <button type="submit" class="w-100 btn btn-lg btn-primary">Email megváltoztatása</button> *@
+            <div>
+                <MudButton Variant="Variant.Filled" Class="w-100 p-3" Style="border-radius: 1rem" ButtonType="ButtonType.Submit" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Dark" Color="Color.Secondary" Size="MudBlazor.Size.Large">Mentés</MudButton>
+            </div>
         </EditForm>
     </div>
 </div>
+
+<style>
+    .input {
+        width: 100%;
+        border: solid 1.5px #9e9e9e;
+        border-radius: 1rem;
+        background: none;
+        padding: 1rem;
+        font-size: 1rem;
+        color: #f5f5f5;
+        transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .form-control:disabled, .form-control[readonly]{
+        background-color: transparent;
+    }
+
+    .input-group-text{
+        border-radius: 0rem 1rem 1rem 0rem;
+        background-color: transparent;
+    }
+</style>
 
 @code {
     private string? message;

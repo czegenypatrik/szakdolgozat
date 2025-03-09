@@ -2,24 +2,35 @@
 
 @inject IdentityUserAccessor UserAccessor
 
-<PageTitle>Personal Data</PageTitle>
+<PageTitle>Személyes adatok</PageTitle>
 
 <StatusMessage />
-<h3>Personal Data</h3>
+<h3>Személyes adatok</h3>
 
 <div class="row">
     <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        <p>Fiókja olyan személyes adatokat tartalmaz, amelyeket Ön adott nekünk. Ez az oldal lehetővé teszi az adatok letöltését vagy törlését.</p>
         <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+            <strong>Az adatok törlésével véglegesen eltávolítja fiókját, és ezeket nem lehet visszaállítani.</strong>
         </p>
-        <form action="Account/Manage/DownloadPersonalData" method="post">
+        @* <form action="Account/Manage/DownloadPersonalData" method="post">
             <AntiforgeryToken />
-            <button class="btn btn-primary" type="submit">Download</button>
+            <button class="btn btn-primary" type="submit">Letöltés</button>
         </form>
         <p>
-            <a href="Account/Manage/DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
+            <a href="Account/Manage/DeletePersonalData" class="btn btn-danger">Törlés</a>
+        </p> *@
+        <div class="container flex-column gap-3">
+            <div class="m-3">
+                <form action="Account/Manage/DownloadPersonalData" method="post">
+                    <AntiforgeryToken />
+                    <MudButton Variant="Variant.Filled" Class="w-50 p-2" Style="border-radius: 1rem" ButtonType="ButtonType.Submit" StartIcon="@Icons.Material.Filled.Download" IconColor="Color.Dark" Color="Color.Info" Size="MudBlazor.Size.Large">Letöltés</MudButton>
+                </form>
+            </div>
+            <div class="m-3">
+                <MudButton Variant="Variant.Filled" Href="Account/Manage/DeletePersonalData" Class="w-50 p-2" Style="border-radius: 1rem" ButtonType="ButtonType.Submit" StartIcon="@Icons.Material.Filled.Delete" IconColor="Color.Dark" Color="Color.Error" Size="MudBlazor.Size.Large">Törlés</MudButton>
+            </div>
+        </div>
     </div>
 </div>
 

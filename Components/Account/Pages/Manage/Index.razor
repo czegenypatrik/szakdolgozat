@@ -20,18 +20,32 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
-                <input type="text" value="@username" class="form-control" placeholder="Please choose your username." disabled />
-                <label for="username" class="form-label">Username</label>
+                <input type="text" value="@username" class="input" placeholder="Add meg a felhasználóneved" disabled />
             </div>
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
-                <label for="phone-number" class="form-label">Phone number</label>
+                <InputText @bind-Value="Input.PhoneNumber" class="input" placeholder="Add meg a telefonszámod (+36 00 000 0000)" />
                 <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            @* <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button> *@
+            <div>
+                <MudButton Variant="Variant.Filled" Class="w-100 p-3" Style="border-radius: 1rem" ButtonType="ButtonType.Submit" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Dark" Color="Color.Secondary" Size="MudBlazor.Size.Large">Mentés</MudButton>
+            </div>
         </EditForm>
     </div>
 </div>
+
+<style>
+    .input, .input:active {
+        width: 100%;
+        border: solid 1.5px #9e9e9e;
+        border-radius: 1rem;
+        background: none;
+        padding: 1rem;
+        font-size: 1rem;
+        color: #f5f5f5;
+        transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    }
+</style>
 
 @code {
     private ApplicationUser user = default!;

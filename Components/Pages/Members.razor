@@ -7,8 +7,8 @@
 <MudSnackbarProvider />
 <MudDialogProvider />
 
-<h3>Tagok</h3>
-<MudPaper Class="pa-16 ma-2" Outlined="true">
+<h3 class="m-3 text-center">Tagok</h3>
+<MudPaper Class="pa-16 ma-2" Outlined="false">
     <EditForm Model="@member" OnValidSubmit="() => HandleValidSubmit(member)">
         <MudTextField @bind-Value="member.Name" Label="Név" Required Variant="Variant.Outlined"></MudTextField>
         <MudTextField @bind-Value="member.Email" Label="Email" Variant="Variant.Outlined"></MudTextField>
@@ -17,12 +17,12 @@
             <MudSelectItem Value="@("Férfi")"><MudIcon Icon="@Icons.Material.Filled.Man" />Férfi</MudSelectItem>
             <MudSelectItem Value="@("Nő")"><MudIcon Icon="@Icons.Material.Filled.Woman" /> Nő</MudSelectItem>
         </MudSelect>
-        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Add" Class="mt-3 mb-3 " Variant="Variant.Filled">Hozzáad</MudButton>
     </EditForm>
 </MudPaper>
 <MudDataGrid T="Szakdolgozat.Data.Models.Members" Items="MembersList" ReadOnly="false" QuickFilter="@_quickFilter"
              EditMode="DataGridEditMode.Cell" CommittedItemChanges="@CommittedItemChanges" Bordered="true"
-             Dense="true" EditTrigger="DataGridEditTrigger.Manual" Class=" rounded-3">
+             Dense="true" EditTrigger="DataGridEditTrigger.Manual" Class="pa-16 ma-2 rounded-3">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Jelenleg nyílvántartásban lévő tagok listája</MudText>
         <MudSpacer />

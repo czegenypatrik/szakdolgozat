@@ -5,18 +5,18 @@
 <MudPopoverProvider />
 <MudSnackbarProvider />
 
-<h3>Bérletek</h3>
-<MudPaper Class="pa-16 ma-2" Outlined="true">
+<h3 class="m-3 text-center">Bérletek</h3>
+<MudPaper Class="pa-16 ma-2" Outlined="false">
     <EditForm Model="@membership" OnValidSubmit="() => HandleValidSubmit(membership)">
         <MudTextField @bind-Value="membership.Type" Label="Típus" Required Variant="Variant.Outlined"></MudTextField>
         <MudNumericField @bind-Value="membership.Price" Label="Ár" Required Variant="Variant.Outlined" />
         <MudNumericField @bind-Value="membership.ValidDays" Label="Érvényesség (Napok)" Required Variant="Variant.Outlined" />
         <MudTextField @bind-Value="membership.Description" Label="Leírás" Variant="Variant.Outlined"></MudTextField>
-        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Submit</MudButton>
+        <MudButton ButtonType="ButtonType.Submit" Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Add" Class="mt-3 mb-3 " Variant="Variant.Filled">Hozzáad</MudButton>
     </EditForm>
     
 </MudPaper>
-<MudDataGrid T="Szakdolgozat.Data.Models.Membership" Items="Memberships" ReadOnly="false" QuickFilter="@_quickFilter" EditMode="DataGridEditMode.Cell" CommittedItemChanges="@CommittedItemChanges" Bordered="true" Dense="true" EditTrigger="DataGridEditTrigger.Manual">
+<MudDataGrid T="Szakdolgozat.Data.Models.Membership" Class="pa-16 ma-2 rounded-3" Items="Memberships" ReadOnly="false" QuickFilter="@_quickFilter" EditMode="DataGridEditMode.Cell" CommittedItemChanges="@CommittedItemChanges" Bordered="true" Dense="false" EditTrigger="DataGridEditTrigger.Manual">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Bérlet és jegy típusok listája</MudText>
         <MudSpacer />
